@@ -1,203 +1,298 @@
-(function ($) {
+ AOS.init({
+ 	duration: 800,
+ 	easing: 'slide'
+ });
 
-    "use strict";
-    $(".carousel-inner .item:first-child").addClass("active");
-    /* Mobile menu click then remove
-    ==========================*/
-    $(".mainmenu-area #mainmenu li a").on("click", function () {
-        $(".navbar-collapse").removeClass("in");
-    });
-    /*WoW js Active
-    =================*/
-    new WOW().init({
-        mobile: true,
-    });
-    /* Scroll to top
-    ===================*/
-    $.scrollUp({
-        scrollText: '<i class="fa fa-angle-up"></i>',
-        easingType: 'linear',
-        scrollSpeed: 900,
-        animation: 'fade'
-    });
-    /* testimonials Slider Active
-    =============================*/
-    $('.testimonials').owlCarousel({
-        loop: true,
-        margin: 0,
-        responsiveClass: true,
-        nav: true,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        smartSpeed: 1000,
-        navText: ['<i class="ti-arrow-left"></i>', '<i class="ti-arrow-right" ></i>'],
-        items: 1
-    });
-    /* testimonials Slider Active
-    =============================*/
-    $('.screen-slider').owlCarousel({
-        loop: true,
-        margin: 0,
-        responsiveClass: true,
-        nav: true,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        smartSpeed: 1000,
-        navText: ['<i class="ti-arrow-left"></i>', '<i class="ti-arrow-right" ></i>'],
-        items: 1,
-        animateIn: 'fadeIn',
-        animateOut: 'fadeOut',
-        center: true,
-    });
-    /* testimonials Slider Active
-    =============================*/
-    $('.clients').owlCarousel({
-        loop: true,
-        margin: 30,
-        responsiveClass: true,
-        nav: true,
-        autoplay: true,
-        autoplayTimeout: 4000,
-        smartSpeed: 1000,
-        navText: ['<i class="ti-arrow-left"></i>', '<i class="ti-arrow-right" ></i>'],
-        responsive: {
-            0: {
-                items: 3,
-            },
-            600: {
-                items: 4
-            },
-            1000: {
-                items: 6
-            }
+$(document).ready(function($) {
+
+	"use strict";
+
+	$(window).stellar({
+    responsive: false,
+    parallaxBackgrounds: true,
+    parallaxElements: true,
+    horizontalScrolling: false,
+    hideDistantElements: false,
+    scrollProperty: 'scroll'
+  });
+
+
+	// loader
+	var loader = function() {
+		setTimeout(function() { 
+			if($('#ftco-loader').length > 0) {
+				$('#ftco-loader').removeClass('show');
+			}
+		}, 1);
+	};
+	loader();
+
+	var carousel = function() {
+		$('.carousel').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: true,
+			stagePadding: 5,
+			nav: false,
+			navText: ['<span class="icon-chevron-left">', '<span class="icon-chevron-right">'],
+			responsive:{
+				0:{
+					items: 1
+				},
+				600:{
+					items: 2
+				},
+				1000:{
+					items: 3
+				}
+			}
+		});
+
+		$('.nonloop-block-13').owlCarousel({
+	    center: false,
+	    items: 1,
+	    loop: false,
+			stagePadding: 0,
+	    margin: 20,
+	    nav: true,
+			navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+	    responsive:{
+        600:{
+        	margin: 20,
+          items: 2
+        },
+        1000:{
+        	margin: 20,
+          items: 2
+        },
+        1200:{
+        	margin: 20,
+          items: 3
         }
-    });
-    /*--------------------
-       MAGNIFIC POPUP JS
-       ----------------------*/
-    var magnifPopup = function () {
-        $('.work-popup').magnificPopup({
-            type: 'image',
-            removalDelay: 300,
-            mainClass: 'mfp-with-zoom',
-            gallery: {
-                enabled: true
-            },
-            zoom: {
-                enabled: true, // By default it's false, so don't forget to enable it
+	    }
+		});
 
-                duration: 300, // duration of the effect, in milliseconds
-                easing: 'ease-in-out', // CSS transition easing function
+		$('.loop-block-31').owlCarousel({
+			loop: false,
+			mouseDrag: false,
+			touchDrag: false,
+			margin: 0,
+			nav: true,
+			items: 1,
+			autoplay: true,
+			stagePadding: 0,
+			nav: true,
+			navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+			animateOut: 'fadeOut',
+    	animateIn: 'fadeIn',
+		});
 
-                // The "opener" function should return the element from which popup will be zoomed in
-                // and to which popup will be scaled down
-                // By defailt it looks for an image tag:
-                opener: function (openerElement) {
-                    // openerElement is the element on which popup was initialized, in this case its <a> tag
-                    // you don't need to add "opener" option if this code matches your needs, it's defailt one.
-                    return openerElement.is('img') ? openerElement : openerElement.find('img');
-                }
-            }
-        });
-    };
-    // Call the functions 
-    magnifPopup();
+		$('.nonloop-block-11').owlCarousel({
+	    center: false,
+	    items: 1,
+	    loop: false,
+			stagePadding: 0,
+	    margin: 30,
+	    nav: true,
+			navText: ['<span class="icon-chevron-left">', '<span class="icon-chevron-right">'],
+	    responsive:{
+        600:{
+        	stagePadding: 0,
+          items:1
+        },
+        800:{
+        	stagePadding: 40,
+          items:2
+        },
+        1000:{
+        	stagePadding: 80,
+          items:3
+        }
+	    }
+		});
 
-    //Background Parallax
-    $('.header-area').parallax("50%", -0.4);
-    $('.price-area').parallax("50%", -0.5);
-    $('.testimonial-area').parallax("10%", -0.2);
+		$('.nonloop').owlCarousel({
+	    center: true,
+	    items:2,
+	    loop:false,
+	    margin:10,
+	    nav: true,
+			navText: ['<span class="icon-arrow_back">', '<span class="icon-arrow_forward">'],
+	    responsive:{
+        600:{
+          items:2
+        }
+	    }
+		});
+	};
+	carousel();
+
+	// scroll
+	var scrollWindow = function() {
+		$(window).scroll(function(){
+			var $w = $(this),
+					st = $w.scrollTop(),
+					navbar = $('.ftco_navbar'),
+					sd = $('.js-scroll-wrap');
+
+			if (st > 150) {
+				if ( !navbar.hasClass('scrolled') ) {
+					navbar.addClass('scrolled');	
+				}
+			} 
+			if (st < 150) {
+				if ( navbar.hasClass('scrolled') ) {
+					navbar.removeClass('scrolled sleep');
+				}
+			} 
+			if ( st > 350 ) {
+				if ( !navbar.hasClass('awake') ) {
+					navbar.addClass('awake');	
+				}
+				
+				if(sd.length > 0) {
+					sd.addClass('sleep');
+				}
+			}
+			if ( st < 350 ) {
+				if ( navbar.hasClass('awake') ) {
+					navbar.removeClass('awake');
+					navbar.addClass('sleep');
+				}
+				if(sd.length > 0) {
+					sd.removeClass('sleep');
+				}
+			}
+		});
+	};
+	scrollWindow();
+
+	var counter = function() {
+		
+		$('#section-counter').waypoint( function( direction ) {
+
+			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+
+				var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
+				$('.ftco-number').each(function(){
+					var $this = $(this),
+						num = $this.data('number');
+						console.log(num);
+					$this.animateNumber(
+					  {
+					    number: num,
+					    numberStep: comma_separator_number_step
+					  }, 7000
+					);
+				});
+				
+			}
+
+		} , { offset: '95%' } );
+
+	}
+	counter();
+	
+	
+
+	var contentWayPoint = function() {
+		var i = 0;
+		$('.ftco-animate').waypoint( function( direction ) {
+
+			if( direction === 'down' && !$(this.element).hasClass('ftco-animated') ) {
+				
+				i++;
+
+				$(this.element).addClass('item-animate');
+				setTimeout(function(){
+
+					$('body .ftco-animate.item-animate').each(function(k){
+						var el = $(this);
+						setTimeout( function () {
+							var effect = el.data('animate-effect');
+							if ( effect === 'fadeIn') {
+								el.addClass('fadeIn ftco-animated');
+							} else if ( effect === 'fadeInLeft') {
+								el.addClass('fadeInLeft ftco-animated');
+							} else if ( effect === 'fadeInRight') {
+								el.addClass('fadeInRight ftco-animated');
+							} else {
+								el.addClass('fadeInUp ftco-animated');
+							}
+							el.removeClass('item-animate');
+						},  k * 50, 'easeInOutExpo' );
+					});
+					
+				}, 100);
+				
+			}
+
+		} , { offset: '95%' } );
+	};
+	contentWayPoint();
+
+	// navigation
+	var OnePageNav = function() {
+		$(".smoothscroll[href^='#'], #ftco-nav ul li a[href^='#']").on('click', function(e) {
+		 	e.preventDefault();
+
+		 	var hash = this.hash,
+		 			navToggler = $('.navbar-toggler');
+		 	$('html, body').animate({
+		    scrollTop: $(hash).offset().top
+		  }, 700, 'easeInOutExpo', function(){
+		    window.location.hash = hash;
+		  });
 
 
-    $('#accordion .panel-title a').prepend('<span></span>');
+		  if ( navToggler.is(':visible') ) {
+		  	navToggler.click();
+		  }
+		});
+		$('body').on('activate.bs.scrollspy', function () {
+		  console.log('nice');
+		})
+	};
+	OnePageNav();
 
 
-
-
-
-
-    //Function to animate slider captions 
-    function doAnimations(elems) {
-        //Cache the animationend event in a variable
-        var animEndEv = 'webkitAnimationEnd animationend';
-
-        elems.each(function () {
-            var $this = $(this),
-                $animationType = $this.data('animation');
-            $this.addClass($animationType).one(animEndEv, function () {
-                $this.removeClass($animationType);
-            });
-        });
+	// magnific popup
+	$('.image-popup').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+     gallery: {
+      enabled: true,
+      navigateByImgClick: true,
+      preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+    },
+    image: {
+      verticalFit: true
+    },
+    zoom: {
+      enabled: true,
+      duration: 300 // don't foget to change the duration also in CSS
     }
+  });
 
-    //Variables on page load 
-    var $myCarousel = $('.caption-slider'),
-        $firstAnimatingElems = $myCarousel.find('.item:first').find("[data-animation ^= 'animated']");
+  $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+    disableOn: 700,
+    type: 'iframe',
+    mainClass: 'mfp-fade',
+    removalDelay: 160,
+    preloader: false,
 
-    //Initialize carousel 
-    $myCarousel.carousel();
+    fixedContentPos: false
+  });
 
-    //Animate captions in first slide on page load 
-    doAnimations($firstAnimatingElems);
-
-    //Pause carousel  
-    $myCarousel.carousel('pause');
-
-
-    //Other slides to be animated on carousel slide event 
-    $myCarousel.on('slide.bs.carousel', function (e) {
-        var $animatingElems = $(e.relatedTarget).find("[data-animation ^= 'animated']");
-        doAnimations($animatingElems);
-    });
+  $('#checkin_date, #checkout_date').datepicker({
+	  'format': 'd MM, yyyy',
+	  'autoclose': true
+	});
 
 
 
+});
 
-
-    // Select all links with hashes
-    $('.mainmenu-area a[href*="#"]')
-        // Remove links that don't actually link to anything
-        .not('[href="#"]')
-        .not('[href="#0"]')
-        .click(function (event) {
-            // On-page links
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
-                location.hostname == this.hostname
-            ) {
-                // Figure out element to scroll to
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                // Does a scroll target exist?
-                if (target.length) {
-                    // Only prevent default if animation is actually gonna happen
-                    event.preventDefault();
-                    $('html, body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000, function () {
-                        // Callback after animation
-                        // Must change focus!
-                        var $target = $(target);
-                        $target.focus();
-                        if ($target.is(":focus")) { // Checking if the target was focused
-                            return false;
-                        } else {
-                            $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                            $target.focus(); // Set focus again
-                        };
-                    });
-                }
-            }
-        });
-
-
-
-
-
-
-    /* Preloader Js
-    ===================*/
-    $(window).on("load", function () {
-        $('.preloader').fadeOut(500);
-    });
-})(jQuery);
